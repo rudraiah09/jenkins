@@ -7,17 +7,18 @@ FROM node:14
 WORKDIR /app
 
 # Copy package.json and package-lock.json files to the working directory
-COPY src/package*.json ./
+COPY package*.json ./
 
 # Install the app dependencies
 RUN npm install
 
 # Copy the rest of the application code to the working directory
-COPY src/ .
+COPY . .
 
 # Expose the port the app runs on
 EXPOSE 3000
 
 # Define the command to run the app
 CMD ["node", "index.js"]
+
 
