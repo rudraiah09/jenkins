@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+    environment {
+        // Environment variables (e.g., AWS credentials)
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    docker.build("your-image-name")
+                }
+            }
+        }
+        stage('Push to ECR') {
+            steps {
+                script {
+                    sh '$(aws ecr get-login --no-include-email --region us-west-2)'
+                    docker.image("your-image-name").push("latest")
+                }
+            }
+        }
+        stage('Deploy to EKS') {
+            steps {
+                script {
+                    kubectl.apply('-f k8s-deployment.yaml')
+                    kubectl.apply('-f k8s-service.yaml')
+                }
+            }
+        }
+    }
+}
