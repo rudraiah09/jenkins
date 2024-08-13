@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     // Login to ECR
-                    def ecrLoginCommand = 'aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ECR_REPO}'
+                    def ecrLoginCommand = 'aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin 014498666580'
                     sh ecrLoginCommand
 
                     // Push the Docker image to ECR
