@@ -19,7 +19,7 @@ pipeline {
         stage('Push to ECR') {
             steps {
                 script {
-                    sh '$(aws ecr get-login --no-include-email --region us-west-2)'
+                    sh '$(aws ecr get-login --no-include-email --region ap-south-1)'
                     docker.image("your-image-name").push("latest")
                 }
             }
