@@ -1,7 +1,9 @@
 pipeline {
     agent any
     environment {
-        // Environment variables (e.g., AWS credentials)
+        AWS_REGION = 'ap-south-1'
+        ECR_REPO = 'your-ecr-repo'
+        IMAGE_TAG = 'latest'
     }
     stages {
         stage('Checkout') {
